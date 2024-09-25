@@ -1,0 +1,25 @@
+<section class="flex items-center content-center justify-center h-[100vh]">
+    <div class="background"
+        style="background-image: url(https://image.tmdb.org/t/p/original/{{ComponentPage.backdrop_path}});"></div>
+    <div class="w-fit p-4 flex items-center flex-col bg-slate-200 rounded-md">
+        <div class="flex flex-row container sm-auto px-4 gap-8">
+            <img src="{{ComponentPage.poster_path == null? 'https://placehold.co/2000x3000' : 'https://image.tmdb.org/t/p/original/' + ComponentPage.poster_path}}"
+                class="w-72" alt="">
+            <div>
+                <div class="mb-4">
+                    <h1 class="text-2xl">{{ComponentPage.title}}</h1>
+                    <h2 class="text-lg text-gray-400">{{ComponentPage.original_title}}</h2>
+                </div>
+                <div class="mb-4 flex flex-col gap-2">
+                    <p><strong>Lançamento:</strong> {{ParseDate(ComponentPage.release_date)}}</p>
+                    <p><strong>Gêneros:</strong> {{ParseGenders(ComponentPage.genres)}}</p>
+                    <p><strong>Produtoras:</strong> {{ParseCompany(ComponentPage.production_companies)}}</p>
+                </div>
+                <div *ngIf="ComponentPage.overview">
+                    <h3 class="text-base font-semibold mb-3">Sinopse do filme</h3>
+                    <p class="max-w-[33rem]">{{ComponentPage.overview}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

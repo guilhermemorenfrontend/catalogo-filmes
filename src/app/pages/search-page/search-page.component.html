@@ -1,0 +1,46 @@
+<div class="w-full h-full pb-8 backgroundContainer">
+    <div class="container mx-auto" role="main">
+        <h1 class="text-5xl text-sky-500 antialiased mb-4">Pesquise por Titulos</h1>
+        <div class="mb-4">
+            <input type="text" [formControl]="queryField"
+                class="w-full h-16 border-[1px] border-sky-900 pl-4 rounded-xl text-xl"
+                placeholder="Procure por filmes" />
+        </div>
+        <div class="flex flex-row gap-4 mt-4 container xl-auto flex-wrap items-center justify-center mb-4">
+            <div>
+                <button class="flex items-center justify-center w-8 h-8 text-white border border-stone-600 text-lg"
+                    *ngIf="currentpage != 1" (click)="SetCurrentPage(1)">
+                    ←
+                </button>
+            </div>
+            <button *ngFor="let number of totalPagesArray" [ngClass]="number == currentpage ? 'CurrentPage' : ''"
+                (click)="SetCurrentPage(number)"
+                class="flex items-center justify-center w-8 h-8 border text-white border-stone-600 text-lg">
+                {{number}}
+            </button>
+            <div class="flex items-center justify-center w-8 h-8 border text-white border-stone-600 text-lg">
+                <button *ngIf="currentpage!= totalPages" (click)="SetCurrentPage(totalPages)">→</button>
+            </div>
+        </div>
+        <section class="MoviesContainer flex gap-3">
+            <div class="CardContainer hover:shadow-xl border-cyan-200 border p-2"
+                style="width: 18rem; position: relative;" *ngFor="let movie of searchPage.results">
+                <div class="pb-9">
+                    <div>
+                        <img class=""
+                            src="{{movie.poster_path == null? 'https://placehold.co/2000x3000' : 'https://image.tmdb.org/t/p/original/' + movie.poster_path}}"
+                            alt="">
+                    </div>
+                    <div class="">
+                        <h3 class="text-[16px] my-2"><strong>{{movie.title}}</strong></h3>
+                        <p class="">{{movie.overview}}</p>
+                    </div>
+                    <button (click)="OnSelected(movie.id)"
+                        class="w-[16.875rem] text-white bottom-2 h-9 absolute bg-gray-800">
+                        Ver detalhes
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

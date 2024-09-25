@@ -1,0 +1,39 @@
+.MoviesContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+//Cards
+
+
+.CardContainer {
+    div {
+        img {
+            width: 260px;
+            height: auto;
+        }
+
+        p {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+        }
+    }
+
+    transition: all 0.5s;
+
+    &:hover {
+        transform: scale(1.1);
+        z-index: 999999;
+    }
+
+    background-color: white;
+}
+
+.CurrentPage{
+    background-color: #87CEEB;
+    color: black !important;
+}
